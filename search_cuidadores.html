@@ -73,7 +73,7 @@
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 15px;
-            padding-right: 330px;
+            padding-right: 30px; /*Tamanho da barra de estado e cidades*/
         }
         /*Estilizando o checkbox*/
         .filter-group label{
@@ -108,14 +108,14 @@
             <h3>Filtros</h3>
             <div class="filter-group">
             <h4>Gênero</h4>
-                <label><input type="checkbox" name="genero" value="masculino">Masculino</label>
-                <label><input type="checkbox" name="genero" value="feminino">Feminino</label>
+                <label><input type="radio" name="genero" value="masculino">Masculino</label>
+                <label><input type="radio" name="genero" value="feminino">Feminino</label>
             </div>
 
             <div class="filter-group">
                 <h4>Idade do Cuidador</h4>
-                <label><input type="checkbox" value="jovem"> 18-25</label>
-                <label><input type="checkbox" value="adulto"> 26-40</label>
+                <label><input type="checkbox" value="jovem" > 18-25</label>
+                <label><input type="checkbox" value="adulto" > 26-40</label>
                 <label><input type="checkbox" value="experiente"> 40+</label>
             </div>
             <div class="filter-group">
@@ -135,7 +135,7 @@
             </div>
         </aside>
         <section class="results">
-            <p>Os cuidadores aparecerão aqqui...</p>
+            <p>Os cuidadores aparecerão aqui...</p>
         </section>
     </main>
     <script>
