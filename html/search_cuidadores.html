@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontre um cuidador</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    
+    <style>
+        .hero-title{
+            text-align: center; /*Centraliza o texto*/
+            margin-top: 80px;   /*Espaço abaixo do header*/
+            font-family: sans-serif;    /*Use a mesma fonte do style.css*/
+            font-size: 58px;    /* Tamannho grande como na imagem*/
+            font-weight: bold;
+            color: #333; /*Cor cinza escuro/ preto*/
+        }
+        .hero-title span{
+            color: #40c1ac; /*Verde agua da identidade visual*/
+        }
+        .container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+        }
+        /*Criando coluna*/
+        .main-content{
+            display: flex; /*Faz os filhos (aside e section) ficarem lado a lado*/
+            gap: 30px; /*Espaço entre o filtro e os resultado*/
+            margin-top: 40px; /*Espaço em relação ao titulo la em cima*/
+            align-items: flex-start; /*alinha o filtro no top*/
+        }
+        /*Estilizando a Aba latera*/
+        .filters{
+            width: 250px; /*Largura fixa para o filtro*/
+            padding: 25px;
+            background-color: #c02828; /*Um cinza bem clarinho para destacar*/
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0,0.05);
+            border: 20px solid #f0f0f0;
+        }
+        /*Organizando os grupos de filtro*/
+        .filter-group{
+            margin-bottom: 20px; /*Espaço entr cada bloco de filtro*/
+            display: flex;
+            flex-direction: column;/*faz os checbox ficarem um abaixo do outro*/
+        }
+        .filter-group h4{
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .filter-group label{
+            font-size: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        /*Estilo para o campo de texto da cidade*/
+        .input-cidade{
+            padding: 8px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            margin-bottom:10px;
+        }
+
+        select.input-cidade{
+            appearance: none; /*removendo a seta padrão do navegador*/
+            background-color: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            padding-right: 30px; /*Tamanho da barra de estado e cidades*/
+        }
+        /*Estilizando o checkbox*/
+        .filter-group label{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.33s;
+        }
+
+        .filter-group label:hover{
+            color: #40c1ac;
+        }
+
+    
+
+    </style>
+    <header>
+        <nav class="container">
+            <div class="logo">Pet<span>Mee</span></div>
+            <div class="nav-links">
+                <a href="#explorar">Encontrar Cuidadores</a>
+                <a href="#como-funciona">Como funciona</a>
+                <button class="btn-primary">Ser um Cuidador</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1 class="hero-title">Encontrar um <span>Cuidador</span></h1>
+    </main>
+    <main class="main-content container">
+        <aside class="Filter">
+            <h3>Filtros</h3>
+            <div class="filter-group">
+            <h4>Gênero</h4>
+                <label><input type="radio" name="genero" value="masculino">Masculino</label>
+                <label><input type="radio" name="genero" value="feminino">Feminino</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Idade do Cuidador</h4>
+                <label><input type="checkbox" value="jovem" > 18-25</label>
+                <label><input type="checkbox" value="adulto" > 26-40</label>
+                <label><input type="checkbox" value="experiente"> 40+</label>
+            </div>
+            <div class="filter-group">
+                <h4>Localização</h4>
+                <label for="estado">Estado</label>
+                <select id="estado" class="input-cidade">
+                    <option value="">Selecione o Estado</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="MG">Minas Gerais</option>
+                </select>
+                
+                <label for="cidade">Cidade::</label>
+                <select id="cidade" class="input-cidade">
+                    <option value="">Selecione o Estado primeiro</option>
+                </select>
+            </div>
+        </aside>
+        <section class="results">
+            <p>Os cuidadores aparecerão aqui...</p>
+        </section>
+    </main>
+    <script>
+        const selectEstado = document.getElementById('estado');
+        const selectCidade = document.getElementById('cidade');
+        // Função para carregar os Estados ao abrir a pagina
+        async function carregarEstado(){
+            const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+            const estados = await response.json();
+
+            estados.forEach(estado => {
+                const option = document.createElement('option');
+                option.value = estado.sigla;
+                option.textContent = estado.nome;
+                selectEstado.appendChild(option)
+            });
+        }
+        //Função para carregar cidades qquando o estado mudar
+        selectEstado. addEventListener('change', async() =>{
+            const sigla = selectEstado.value;
+            selectCidade.innerHTML = '<option value="">Carregando...</option>';
+
+            if (!sigla){
+                selectCidade.innerHTML = '<option value=""> Seleciobe o Estado primeiro</option>'
+                return;
+            }
+
+            const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios`)
+            const cidades = await response.json();
+
+            selectCidade.innerHTML= '<option value="">Selecione a Cidade</option>';
+            cidades.forEach(cidade => {
+                const option = document.createElement('option');
+                option.value = cidade.nome;
+                option.textContent = cidade.nome;
+                selectCidade.appendChild(option);
+            })
+        });
+        //inicializa a lista de estados
+        carregarEstado();
+    </script>
+</body>
+</html>

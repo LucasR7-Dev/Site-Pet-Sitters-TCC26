@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil do Cachorro</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f2f5, #dfe9f3);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 380px;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: #fff;
+    }
+
+    .overlay h2 {
+      font-size: 24px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .section {
+      margin-bottom: 15px;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .value {
+      color: #333;
+      margin-top: 2px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .accept {
+      background: #28a745;
+      color: white;
+    }
+
+    .accept:hover {
+      background: #218838;
+    }
+
+    .reject {
+      background: #f1f1f1;
+    }
+
+    .reject:hover {
+      background: #ddd;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="image-container">
+    <img src="Pets/CA1.png">
+
+    <div class="overlay">
+      <h2>Luna 🐶</h2>
+      <div class="tags">
+        <div class="tag">Fêmea</div>
+        <div class="tag">Médio</div>
+        <div class="tag">2 anos</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <div class="label">Raça</div>
+      <div class="value">Husky Siberiano</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Localização</div>
+      <div class="value">Pinheiros, SP • ⭐ 5.0</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Status</div>
+      <div class="status">Disponível</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Saúde</div>
+      <div class="value">✔ Vacinada &nbsp;&nbsp; ✔ Castrada</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Sobre</div>
+      <div class="value">
+        Muito ativa, ama correr e brincar. Ideal para quem gosta de pets cheios de energia.
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="accept" onclick="alert('Pedido enviado!')">Quero cuidar ❤️</button>
+      <button class="reject" onclick="alert('Talvez outro 🐾')">Recusar</button>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
