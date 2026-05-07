@@ -27,26 +27,20 @@
             padding: 20px 5%;
         }
         /*Criando coluna*/
-        .main-content{
+        .main-content-container{
             display: flex; /*Faz os filhos (aside e section) ficarem lado a lado*/
             gap: 30px; /*Espaço entre o filtro e os resultado*/
             margin-top: 40px; /*Espaço em relação ao titulo la em cima*/
             align-items: flex-start; /*alinha o filtro no top*/
         }
         /*Estilizando a Aba latera*/
-        .filters{
-            width: 250px; /*Largura fixa para o filtro*/
-            padding: 25px;
-            background-color: #c02828; /*Um cinza bem clarinho para destacar*/
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0,0.05);
-            border: 20px solid #f0f0f0;
-        }
+        
         /*Organizando os grupos de filtro*/
         .filter-group{
-            margin-bottom: 20px; /*Espaço entr cada bloco de filtro*/
+            margin-bottom: 20px; /*Espaço entre cada bloco de filtro*/
             display: flex;
             flex-direction: column;/*faz os checbox ficarem um abaixo do outro*/
+    
         }
         .filter-group h4{
             margin-bottom: 10px;
@@ -66,6 +60,20 @@
             border-radius:5px;
             margin-bottom:10px;
         }
+        .input-estado{
+            padding: 8px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            margin-bottom:10px;
+        }
+        select.input-estado{
+            appearance: none; /*removendo a seta padrão do navegador*/
+            background-color: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            padding-right: 35px; /*Tamanho da barra de estado e cidades*/
+        }
 
         select.input-cidade{
             appearance: none; /*removendo a seta padrão do navegador*/
@@ -73,7 +81,7 @@
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 15px;
-            padding-right: 30px; /*Tamanho da barra de estado e cidades*/
+            padding-right: 35px; /*Tamanho da barra de estado e cidades*/
         }
         /*Estilizando o checkbox*/
         .filter-group label{
@@ -83,12 +91,78 @@
             transition: color 0.33s;
         }
 
-        .filter-group label:hover{
-            color: #40c1ac;
+        .side-bar-filter{
+            position: fixed;
+            top: 260px;
+            left: 10px;
+            position: absolute;
+            background-color: #fd83318c; /*Um cinza bem clarinho para destacar*/
+            border-radius: 15px;
+            box-shadow: 0 4px 5px rgba(0,0,0,0,0.05);
+            border: 2px solid #863100;
+            height: auto;
+
         }
 
-    
+        
 
+        .Card-cuidadores-encontrados{
+            margin-top: 2%;
+            margin-left: 15%;
+            width: 100%;
+            display: flex;
+            
+            
+        }
+        .minimal-card{
+            margin-top: auto;
+            margin-left: 5%;
+            width: auto;
+            display: grid;
+            display: inline-block;
+
+        }
+        div.show-sidebar{
+            display: none;
+            border-left: 30px, solid orangered;
+            border-top: 30px, solid transparent;
+            border-bottom: 30px,solid transparent;
+            margin-top: 20px;
+            position: fixed;
+            cursor: pointer;
+            top: 90px;
+        }
+        @media screen and (max-width: 1024px){
+            section.Card-cuidadores-encontrados{
+                width: 100%;
+                margin-left: 0;
+                margin-top: 65%;
+            }
+            nav.side-bar-filter{
+                margin-top: 25%;
+                display: inline-block;
+                width: auto;
+                height: auto;
+                align-items: center;
+                
+            }
+            .filter-group{
+                flex-direction: row;
+            }
+            .input-cidade{
+            margin-right: 5px;
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: auto;
+            padding-right: 35px; /*Tamanho da barra de estado e cidades*/
+            }
+            select.input-cidade{
+                margin-right: 35px;
+            }
+
+
+        }
+        
     </style>
     <header>
         <nav class="container">
@@ -101,9 +175,11 @@
         </nav>
     </header>
     <main>
+        <!--Meio do site-->
         <h1 class="hero-title">Encontrar um <span>Cuidador</span></h1>
     </main>
-    <main class="main-content container">
+    <nav class="side-bar-filter">
+        <div class="show-sidebar"></div>
         <aside class="Filter">
             <h3>Filtros</h3>
             <div class="filter-group">
@@ -121,7 +197,7 @@
             <div class="filter-group">
                 <h4>Localização</h4>
                 <label for="estado">Estado</label>
-                <select id="estado" class="input-cidade">
+                <select id="estado" class="input-estado">
                     <option value="">Selecione o Estado</option>
                     <option value="SP">São Paulo</option>
                     <option value="RJ">Rio de Janeiro</option>
@@ -137,7 +213,7 @@
         <section class="results">
             <p>Os cuidadores aparecerão aqui...</p>
         </section>
-    </main>
+    </nav>
     <script>
         const selectEstado = document.getElementById('estado');
         const selectCidade = document.getElementById('cidade');
@@ -177,5 +253,34 @@
         //inicializa a lista de estados
         carregarEstado();
     </script>
+    <!--Cards dos cuidadores filtrados-->
+    <section class="Card-cuidadores-encontrados">
+        <div class="minimal-card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=500&auto=format&fit=crop')"></div>
+
+            <div class="card-details">
+                <span class="category">Hospedagem</span>
+                <h3>Clínica Pet Amigo</h3>
+                <p class="location">Moema, SP • ⭐ 5.0</p>
+                <div class="card-meta">
+                    <strong class="price">R$ 120<em>/noite</em></strong> <!--Tirei o span e o 'a' e coloquei tegs semanticas strong e 'em', com tags semanticas o HTML entende melhor qual parte é do site-->
+                    <a href="#" class="view-more">Ver Perfil →</a>
+                </div>
+            </div>
+        </div>
+        <div class="minimal-card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=500&auto=format&fit=crop')"></div>
+
+            <div class="card-details">
+                <span class="category">Hospedagem</span>
+                <h3>Marcos</h3>
+                <p class="location">Santos, SP • ⭐ 5.0</p>
+                <div class="card-meta">
+                    <strong class="price">R$ 100<em>/noite</em></strong> <!--Tirei o span e o 'a' e coloquei tegs semanticas strong e 'em', com tags semanticas o HTML entende melhor qual parte é do site-->
+                    <a href="#" class="view-more">Ver Perfil →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
