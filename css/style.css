@@ -46,7 +46,7 @@ header nav {
 }
 
 .logo img {
-    height: 42px; /* Tamanho ideal para a logo no menu */
+    height: 150px; /* Tamanho ideal para a logo no menu */
     width: auto;
     display: block;
     transition: transform 0.3s ease;
