@@ -1,0 +1,315 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+
+
+.hero-title{
+    text-align: center;/* Centraliza o texto horizontalmente */
+    margin-top: 40px;/* Espaçamento superior */
+    margin-bottom: 40px;/* Espaçamento inferior */
+
+    font-size: 42px;/* Tamanho da fonte */
+    font-weight: 800;/* Negrito */
+
+    font-family: 'Outfit', sans-serif;/* Fonte personalizada para o título */
+}
+
+.hero-title span{
+    color: #ff6b00;/* Cor laranja para destacar a palavra "Cuidadores" */
+}
+
+
+/*SIDEBAR DOS FILTROS*/
+.sidebar-filter{
+    position: fixed;/* Fixa a barra lateral na tela */
+
+    top: 170px;/* Distância do topo da tela */
+    left: 25px;/* Distância da esquerda da tela */
+
+    width: 290px;
+    min-width: 290px;
+
+    background: #fff;/* Fundo branco para a barra lateral */
+
+    border-radius: 22px;/* Bordas arredondadas */
+
+    padding: 25px;/* Espaçamento interno */
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);/* Sombra para dar profundidade */
+
+    border: 1px solid #ececec;/* Borda leve para destacar a barra lateral */
+
+    height: calc(100vh - 200px);
+
+    overflow-y: auto;/* Permite rolagem vertical se o conteúdo ultrapassar a altura da barra lateral */
+}
+
+
+
+.grupofilters{
+    display: flex;/* Exibe os filtros em um layout flexível */
+    flex-direction: column;/* Organiza os filtros em uma coluna */
+    gap: 25px;/* Espaçamento entre os grupos de filtros */
+}
+
+
+
+.grupo-filtros{
+    display: flex;/* Exibe os filtros em um layout flexível */
+    flex-direction: column;/* Organiza os filtros em uma coluna */
+
+    gap: 14px;
+
+    padding-bottom: 22px;/* Espaçamento inferior para separar os grupos de filtros */
+
+    border-bottom: 1px solid #ededed;
+}
+
+.grupo-filtros:last-child{
+    border-bottom: none;/* Remove a borda inferior do último grupo de filtros */
+}
+
+
+
+.grupofilters h3{
+    font-size: 28px;
+    font-weight: 800;
+
+    color: #111;/* Cor para o título dos filtros */
+}
+
+.grupo-filtros h4{
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #333;
+}
+
+
+
+.grupo-filtros label{
+    display: flex;/* Exibe os rótulos dos filtros em um layout flexível */
+    align-items: center;/* Alinha os itens verticalmente ao centro */
+
+    gap: 10px;/* Espaçamento entre o checkbox e o texto do rótulo */
+
+    font-size: 15px;
+
+    color: #444;/* Cor para os rótulos dos filtros */
+
+    cursor: pointer;
+
+    transition: 0.2s ease;/* Transição suave para a mudança de cor ao passar o mouse */
+    }
+
+.grupo-filtros label:hover{
+    color: #ff6b00;/* Cor laranja ao passar o mouse sobre o rótulo do filtro */
+}
+
+
+
+.input-estado,.input-cidade{
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    border: 1px solid #d8d8d8;
+
+    background: #fff;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.input-estado:focus,.input-cidade:focus{/* Estilo para os campos de estado e cidade quando estão focados (selecionados) */
+    border-color: #ff6b00;/* Cor laranja para destacar o campo selecionado */
+
+    box-shadow: 0 0 0 4px rgba(255,107,0,0.15);/* Sombra suave para destacar o campo selecionado */
+}
+
+
+
+select.input-estado, select.input-cidade{/* Estilo para os campos de seleção de estado e cidade */
+    appearance: none;/* Remove a aparência padrão do select para personalização */
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); /* Ícone de seta para baixo personalizado */
+
+    background-repeat: no-repeat;/* Evita que o ícone se repita */
+
+    background-position: right 14px center;/* Posiciona o ícone à direita do campo, com um pequeno espaçamento */
+
+    background-size: 16px;
+
+    padding-right: 40px;
+}
+
+
+
+.Card-cuidadores-encontrados{/* Estilo para a seção que exibe os cuidadores encontrados */
+    margin-left: 350px;/* Espaçamento à esquerda para acomodar a barra lateral fixa */
+
+    padding: 20px;/* Espaçamento interno para os cartões de cuidadores encontrados */
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));/* Layout responsivo para os cartões de cuidadores encontrados */
+
+    gap: 30px;
+}
+
+
+
+.minimal-card{/* Estilo para os cartões de cuidadores encontrados */
+    background: #fff;
+
+    border-radius: 22px;
+
+    overflow: hidden;/* Garante que o conteúdo do cartão não ultrapasse as bordas arredondadas */
+
+    border: 1px solid #ececec;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+
+    transition: 0.25s ease;
+}
+
+.minimal-card:hover{/* Efeito de destaque ao passar o mouse sobre o cartão */
+    transform: translateY(-6px);/* Eleva o cartão levemente ao passar o mouse para criar um efeito de destaque */
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+
+
+.card-img{/* Estilo para a imagem do cartão de cuidador encontrado */
+    width: 100%;/* Garante que a imagem ocupe toda a largura do cartão */
+    height: 220px;
+
+    background-size: cover;/* Garante que a imagem cubra toda a área do cartão, mantendo a proporção */
+    background-position: center;
+}
+
+
+
+.card-details{/* Estilo para os detalhes do cartão de cuidador encontrado */
+    padding: 20px;
+}
+
+.category{/* Estilo para a categoria do cuidador encontrado */
+    display: inline-block;/* Exibe a categoria como um bloco em linha para permitir o espaçamento e o estilo personalizado */
+
+    background: rgba(255,107,0,0.12);
+
+    color: #ff6b00;/* Cor laranja para o texto da categoria */
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-size: 13px;/* Tamanho da fonte para a categoria */
+
+    font-weight: 600;
+
+    margin-bottom: 15px;/* Espaçamento inferior para separar a categoria do restante dos detalhes do cartão */
+    }
+
+.card-details h3{/* Estilo para o nome do cuidador encontrado */
+    font-size: 22px;/* Tamanho da fonte para o nome do cuidador encontrado */
+
+    margin-bottom: 10px;
+
+    color: #222;
+}
+
+.location{/* Estilo para a localização do cuidador encontrado */
+    color: #777;/* Cor cinza para a localização do cuidador encontrado */
+
+    margin-bottom: 20px;
+
+    font-size: 14px;/* Tamanho da fonte para a localização do cuidador encontrado */
+}
+
+
+
+.card-meta{/* Estilo para a seção de informações adicionais do cartão de cuidador encontrado */
+    display: flex;/* Exibe as informações adicionais em um layout flexível */
+
+    align-items: center;
+
+    justify-content: space-between;/* Distribui o espaço entre as informações adicionais para que fiquem alinhadas à esquerda e à direita do cartão */
+
+    gap: 10px;
+}
+
+.price{
+    font-size: 24px;/* Tamanho da fonte para o preço do cuidador encontrado */
+
+    color: #111;/* Cor para o preço do cuidador encontrado */
+}
+
+.price em{/* Estilo para a parte do preço que indica o período (por exemplo, "por hora") */
+    font-size: 14px;
+
+    color: #777;
+
+    font-style: normal;
+}
+
+.view-more{/* Estilo para o link "Ver mais" no cartão de cuidador encontrado */
+text-decoration: none;
+
+color: #ff6b00;
+
+font-weight: 700;
+
+transition: 0.2s ease;
+}
+
+.view-more:hover{/* Efeito de destaque ao passar o mouse sobre o link "Ver mais" */
+opacity: 0.7;
+}
+
+
+
+@media screen and (max-width: 1024px){/* Estilos para telas com largura máxima de 1024px (tablets e dispositivos menores) */
+
+    .sidebar-filter{
+        position: relative;/* Altera a posição da barra lateral para relativa para que ela se encaixe no fluxo normal do layout em telas menores */
+
+        top: 0;
+        left: 0;
+
+        width: calc(100% - 30px);/* Ajusta a largura da barra lateral para ocupar a maior parte da largura da tela, deixando um pequeno espaço nas laterais */
+
+        margin: 20px auto;/* Centraliza a barra lateral horizontalmente e adiciona um espaçamento superior e inferior */
+
+        height: auto;
+    }
+
+    .Card-cuidadores-encontrados{/* Estilos para a seção que exibe os cuidadores encontrados em telas menores */
+        margin-left: 0;
+
+        grid-template-columns: 1fr;/* Altera o layout para uma única coluna em telas menores para melhor legibilidade */
+
+        padding: 15px;/* Reduz o espaçamento interno para se adequar melhor a telas menores */
+    }
+
+    .hero-title{/* Estilos para o título principal em telas menores */
+        font-size: 34px;
+    }
+}
