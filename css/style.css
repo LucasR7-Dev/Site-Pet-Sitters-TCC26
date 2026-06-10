@@ -60,7 +60,7 @@ header nav {
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: 0.2s; }
 .nav-links a:hover { color: var(--secondary); }
 
-.btn-primary {
+a.button-login {
     background-color: var(--accent);
     color: white;
     border: none;
@@ -71,7 +71,7 @@ header nav {
     transition: 0.3s ease;
 }
 
-.btn-primary:hover {
+.button-login:hover {
     background-color: #ea580c; /* Laranja mais escuro */
     box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.2);
 }
