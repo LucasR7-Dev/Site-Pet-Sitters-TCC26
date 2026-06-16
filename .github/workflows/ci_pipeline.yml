@@ -34,7 +34,7 @@ jobs:
           node-version: '20'
 
       - name: Instalar Dependencias
-        run: npm ci --prefer-offline --no-audit
+        run: npm install --prefer-offline --no-audit
 
       - name: Verificar Vulnerabilidades
         run: npm audit --audit-level=high
@@ -56,7 +56,7 @@ jobs:
           node-version: '20'
 
       - name: Instalar Dependencias
-        run: npm ci --prefer-offline --no-audit
+        run: npm install --prefer-offline --no-audit
 
       - name: Executar Suite de Testes
         run: npm test
@@ -76,7 +76,7 @@ jobs:
           node-version: '20'
 
       - name: Instalar Dependencias
-        run: npm ci --prefer-offline --no-audit
+        run: npm install --prefer-offline --no-audit
 
       - name: Executar Build do Projeto
         run: npm run build
