@@ -16,8 +16,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validation:
@@ -37,12 +37,12 @@ jobs:
         run: npm install -g htmlhint stylelint stylelint-config-standard eslint
 
       - name: Validar Arquivos HTML
-        run: htmlhint "html/**/*.html" || echo "Nenhum erro crítico impeditivo"
+        run: htmlhint "**/*.html" || echo "Nenhum erro crítico impeditivo"
 
       - name: Validar Arquivos CSS
         run: |
-          npx stylelint "css/**/*.css" --config stylelint-config-standard || echo "Apenas avisos de estilo"
+          npx stylelint "**/*.css" --config stylelint-config-standard || echo "Apenas avisos de estilo"
 
       - name: Validar Arquivos JavaScript
         run: |
-          npx eslint "js/**/*.js" --env browser --syntax-ecma-version 2020 || echo "Apenas avisos de sintaxe"
+          npx eslint "**/*.js" --env browser --syntax-ecma-version 2020 || echo "Apenas avisos de sintaxe"
