@@ -32,7 +32,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Instalar Dependencias
         run: npm ci --prefer-offline --no-audit
@@ -55,7 +54,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Instalar Dependencias
         run: npm ci --prefer-offline --no-audit
@@ -76,7 +74,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Instalar Dependencias
         run: npm ci --prefer-offline --no-audit
