@@ -19,10 +19,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-defaults:
-  run:
-    working-directory: Site-Pet-Sitters-TCC26
-
 jobs:
   security-and-lint:
     name: Seguranca e Estilo
