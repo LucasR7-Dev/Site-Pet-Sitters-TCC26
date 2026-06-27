@@ -2,65 +2,409 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetMee | Perfil de: Luna 🐶</title>
-  <link rel="stylesheet" href="../../css/perfil/perfil1.css">
+  
+  <!-- Fonte Moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/perfil/perfil3.css">
 
+  <style>
+    /* --- CSS MODERNO E RESPONSIVO --- */
+    :root {
+      --primary: #ff477e;
+      --primary-hover: #ff2a65;
+      --secondary: #f0f2f5;
+      --secondary-hover: #e4e6eb;
+      --text-main: #2d3748;
+      --text-muted: #718096;
+      --status-bg: #e6fffa;
+      --status-text: #047481;
+      --card-bg: #ffffff;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Card Principal com Animação */
+    .card {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 380px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Container da Imagem */
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .image-container img {
+      transform: scale(1.04);
+    }
+
+    /* Gradiente de leitura */
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 35px 24px 24px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: white;
+    }
+
+    .overlay h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* Tags internas */
+    .tags {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Conteúdo das Informações */
+    .content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f3f7;
+    }
+
+    .section.sobre {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .label {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .value {
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* Badge de Status Interativo */
+    .status {
+      background-color: var(--status-bg);
+      color: var(--status-text);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .status.indisponivel {
+      background-color: #ffeeed;
+      color: #e53e3e;
+    }
+
+    /* Botões */
+    .buttons {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .accept {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 71, 126, 0.2);
+    }
+
+    .accept:hover {
+      background-color: var(--primary-hover);
+      transform: scale(1.01);
+    }
+
+    .reject {
+      background-color: var(--secondary);
+      color: var(--text-main);
+    }
+
+    .reject:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    /* --- MODAL DE SUCESSO (FUNCIONALIDADE EXTRA) --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .modal {
+      background: white;
+      padding: 32px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 320px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1);
+    }
+
+    .modal h3 {
+      margin: 12px 0 8px;
+      color: var(--text-main);
+    }
+
+    .modal p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+  <!-- Card de Pet -->
+  <main class="card" id="petCard">
 
-  <div class="image-container">
-    <img src="../../pets/CA2.png">
-
-    <div class="overlay">
-      <h2>Luna 🐶</h2>
-      <div class="tags">
-        <div class="tag">Fêmea</div>
-        <div class="tag">Médio</div>
-        <div class="tag">2 anos</div>
+    <header class="image-container">
+      <!-- Mantido o caminho solicitado -->
+      <img src="../../pets/CA2.png" id="petImg" alt="Foto do Pet">
+      
+      <div class="overlay">
+        <h2 id="petName">Luna 🐶</h2>
+        <div class="tags">
+          <span class="tag" id="tagG">Fêmea</span>
+          <span class="tag" id="tagM">Médio</span>
+          <span class="tag" id="tagA">2 anos</span>
+        </div>
       </div>
+    </header>
+
+    <article class="content">
+      <section class="section">
+        <span class="label">Raça</span>
+        <span class="value" id="petBreed">Husky Siberiano</span>
+      </section>
+
+      <section class="section">
+        <span class="label">Localização</span>
+        <span class="value" id="petLocation">Pinheiros, SP • ⭐ 5.0</span>
+      </section>
+
+      <section class="section">
+        <span class="label">Status</span>
+        <span class="status" id="petStatus">Disponível</span>
+      </section>
+
+      <section class="section">
+        <span class="label">Saúde</span>
+        <span class="value" style="color: #2f855a;">✔ Vacinada &nbsp;&nbsp; ✔ Castrada</span>
+      </section>
+
+      <section class="section sobre">
+        <span class="label">Sobre</span>
+        <p class="value" id="petAbout" style="font-weight: 400; line-height: 1.5; color: #4a5568;">
+          Muito ativa, ama correr e brincar. Ideal para quem gosta de pets cheios de energia.
+        </p>
+      </section>
+
+      <footer class="buttons">
+        <button class="accept" id="btnAdopt">Quero cuidar ❤️</button>
+        <button class="reject" id="btnNext">Conhecer outro pet</button>
+      </footer>
+    </article>
+
+  </main>
+
+  <!-- Modal customizado para substituir o 'alert' antigo e feio -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div style="font-size: 48px;">🎉</div>
+      <h3>Pedido Enviado!</h3>
+      <p>Obrigado pelo interesse. O protetor entrará em contato com você em breve via chat!</p>
+      <button class="reject" id="closeModal" style="padding: 10px;">Fechar</button>
     </div>
   </div>
 
-  <div class="content">
+  <!-- --- JAVASCRIPT: TORNANDO TUDO FUNCIONAL --- -->
+  <script>
+    // Seleção de elementos do DOM
+    const btnAdopt = document.getElementById('btnAdopt');
+    const btnNext = document.getElementById('btnNext');
+    const petStatus = document.getElementById('petStatus');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
 
-    <div class="section">
-      <div class="label">Raça</div>
-      <div class="value">Husky Siberiano</div>
-    </div>
+    // Elementos dinâmicos para a troca de pet
+    const petName = document.getElementById('petName');
+    const petBreed = document.getElementById('petBreed');
+    const petAbout = document.getElementById('petAbout');
+    const tagG = document.getElementById('tagG');
+    const tagM = document.getElementById('tagM');
+    const tagA = document.getElementById('tagA');
 
-    <div class="section">
-      <div class="label">Localização</div>
-      <div class="value">Pinheiros, SP • ⭐ 5.0</div>
-    </div>
+    // Banco de dados simulado para a ação "Conhecer outro pet" funcionar de verdade
+    const listaPets = [
+      {
+        nome: "Luna 🐶",
+        raca: "Husky Siberiano",
+        sobre: "Muito ativa, ama correr e brincar. Ideal para quem gosta de pets cheios de energia.",
+        genero: "Fêmea", porte: "Médio", idade: "2 anos",
+        status: "Disponível"
+      },
+      {
+        nome: "Thor 🐕",
+        raca: "Golden Retriever",
+        sobre: "Super dócil, companheiro e adora crianças. Ama passar a tarde pegando bolinhas.",
+        genero: "Macho", porte: "Grande", idade: "1 ano",
+        status: "Disponível"
+      },
+      {
+        nome: "Mel 🐱",
+        raca: "Persa",
+        sobre: "Calma, carinhosa e passa a maior parte do tempo dormindo nos cantos mais ensolarados.",
+        genero: "Fêmea", porte: "Pequeno", idade: "3 anos",
+        status: "Disponível"
+      }
+    ];
 
-    <div class="section">
-      <div class="label">Status</div>
-      <div class="status">Disponível</div>
-    </div>
+    let petAtualIndex = 0;
 
-    <div class="section">
-      <div class="label">Saúde</div>
-      <div class="value">✔ Vacinada &nbsp;&nbsp; ✔ Castrada</div>
-    </div>
+    // 1. Ação do Botão "Quero Cuidar" (Abre o Modal e altera o Status para Ocupado/Solicitado)
+    btnAdopt.addEventListener('click', () => {
+      // Abre o modal moderno
+      modal.classList.add('active');
+      
+      // Muda visualmente o status do pet
+      petStatus.textContent = "Solicitado";
+      petStatus.classList.add('indisponivel');
+      
+      // Avisa no console
+      console.log('Pedido enviado para o pet: ' + listaPets[petAtualIndex].nome);
+    });
 
-    <div class="section">
-      <div class="label">Sobre</div>
-      <div class="value">
-        Muito ativa, ama correr e brincar. Ideal para quem gosta de pets cheios de energia.
-      </div>
-    </div>
+    // Fechar Modal
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
 
-    <div class="buttons">
-      <button class="accept" onclick="alert('Pedido enviado! 🐾')">Quero cuidar ❤️</button>
-      <button class="reject" onclick="alert('Prepare o coração... Lá vem mais uma fofura! 🐾')">Conhecer outro pet</button>
-    </div>
+    // 2. Ação do Botão "Conhecer outro pet" (Rotaciona os dados dinamicamente)
+    btnNext.addEventListener('click', () => {
+      // Avança no array de pets simulados
+      petAtualIndex = (petAtualIndex + 1) % listaPets.length;
+      const novoPet = listaPets[petAtualIndex];
 
-  </div>
+      // Aplica uma leve animação de transição ao trocar
+      const card = document.getElementById('petCard');
+      card.style.opacity = 0;
+      card.style.transform = "scale(0.95)";
 
-</div>
+      setTimeout(() => {
+        // Altera as informações textuais sem quebrar as pastas de imagem
+        petName.textContent = novoPet.nome;
+        petBreed.textContent = novoPet.raca;
+        petAbout.textContent = novoPet.sobre;
+        tagG.textContent = novoPet.genero;
+        tagM.textContent = novoPet.porte;
+        tagA.textContent = novoPet.idade;
+        
+        // Reseta o status para Disponível
+        petStatus.textContent = novoPet.status;
+        petStatus.classList.remove('indisponivel');
 
+        // Restaura a opacidade do card
+        card.style.opacity = 1;
+        card.style.transform = "scale(1)";
+      }, 200);
+    });
+  </script>
 </body>
 </html>
