@@ -12,96 +12,106 @@
 </head>
 <body>
     <header>
-        <!--Header do site-->
-        <div id="header"></div>
-        <script src="../js/load_header.js"></script>
+        <nav class="container">
+            <div class="logo">
+                <a href="../html/inicio.html">
+                    <img src="../img/LOGO.png" alt="PetMee Logo">
+                </a>
+            </div>
+            
+        </nav>
     </header>
     
+    <h1 class="hero-title">Encontrar um <span>Cuidador</span></h1>
 
     <main>
         <!--Meio do site-->
-        <h1 class="hero-title">Encontrar um <span>Cuidador</span></h1>
-    </main>
-    <!--Sidebar de filtros-->
-    <aside class="sidebar-filter">
-        <div class="grupofilters">
-            <!--Titulo-->
-            <h3>Filtros</h3>
-            <!--Grupo de filtros de gênero-->
-            <div class="grupo-filtros">
-                <h4>Gênero</h4>
-                <label><input type='radio' name='genero' value='masculino'>Masculino</label>
-                <label><input type='radio' name='genero' value='feminino'>Feminino</label>
-                <label><input type='radio' name='genero' value='both'>Masculino e feminino</label>
-            
-            </div>
-            <!--Grupo de filtros de Idade-->
-            <div class="grupo-filtros">
-            <h3>Idade</h3>
-            <label><input type='checkbox' value='jovem'> 18 - 25 </label>
-            <label><input type='checkbox' value='adulto'> 26 - 40 </label>
-            <label><input type='checkbox' value='experiente'>40+</label>
-            
-            </div>
-        <!--Grupo de filtros de estado cidade-->
-            <div class="grupo-filtros">
-            
-            <h4>Localização</h4>
-            <label for='estado'>Estado</label>
-            
-            <select id='estado' class='input-estado'>
-                
-                <option value="">Selecione o estado</option>
-                <option value="SP">São Paulo</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="MG">Minas Gerais</option>
-                
-            </select>
-            <!--Filtro de Cidade-->
-            <label for='cidade'>Cidade:</label>
-            <select id='cidade' class='input-cidade'>
-                <option value=''>Selecione primeiro o estado</option>
-            </select>
-            </div>
-        </div>
-    </aside>
+        
     
-    <!--Cards dos cuidadores filtrados-->
-    <section class="Card-cuidadores-encontrados">
-        <div class="minimal-card">
-            <div class="card-img" style="background-image: url('../img/CPA.png')"></div>
-            <!--Cards de exemplo não funcional-->
-            <div class="card-details">
-                <span class="category">Hospedagem</span>
-                <h3>Clínica Pet Amigo</h3>
-                <p class="location">Moema, SP • ⭐ 5.0</p>
-                <div class="card-meta">
-                    <strong class="price">R$ 120<em>/noite</em></strong> <!--Tirei o span e o 'a' e coloquei tegs semanticas strong e 'em', com tags semanticas o HTML entende melhor qual parte é do site-->
-                    <a href="#" class="view-more">Ver Perfil →</a>
+    <!--Sidebar de filtros-->
+        <aside class="sidebar-filter">
+            <div class="grupofilters">
+                <!--Titulo-->
+                <h3>Filtros</h3>
+                <!--Grupo de filtros de gênero-->
+                <div class="grupo-filtros">
+                    <h4>Gênero</h4>
+                    <label><input type='radio' name='genero' value='masculino'>Masculino</label>
+                    <label><input type='radio' name='genero' value='feminino'>Feminino</label>
+                    <label><input type='radio' name='genero' value='both'>Masculino e feminino</label>
+                
+                </div>
+                <!--Grupo de filtros de Idade-->
+                <div class="grupo-filtros">
+                <h3>Idade</h3>
+                <label><input type='checkbox' value='jovem'> 18 - 25 </label>
+                <label><input type='checkbox' value='adulto'> 26 - 40 </label>
+                <label><input type='checkbox' value='experiente'>40+</label>
+                
+                </div>
+            <!--Grupo de filtros de estado cidade-->
+                <div class="grupo-filtros">
+                
+                <h4>Localização</h4>
+                <label for='estado'>Estado</label>
+                
+                <select id='estado' class='input-estado'>
+                    
+                    <option value="">Selecione o estado</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="MG">Minas Gerais</option>
+                    
+                </select>
+                <!--Filtro de Cidade-->
+                <label for='cidade'>Cidade:</label>
+                <select id='cidade' class='input-cidade'>
+                    <option value=''>Selecione primeiro o estado</option>
+                </select>
                 </div>
             </div>
-        </div>
-        <div class="minimal-card">
-            <div class="card-img" style="background-image: url('../img/NPS.png')"></div>
+        </aside>
+        
+        <!--Cards dos cuidadores filtrados-->
+        <section class="Card-cuidadores-encontrados">
+            <div class="minimal-card">
+                <div class="card-img" style="background-image: url('../img/CPA.png')"></div>
+                <!--Cards de exemplo não funcional-->
+                <div class="card-details">
+                    <span class="category">Hospedagem</span>
+                    <h3>Clínica Pet Amigo</h3>
+                    <p class="location">Moema, SP • ⭐ 5.0</p>
+                    <div class="card-meta">
+                        <strong class="price">R$ 120<em>/noite</em></strong> <!--Tirei o span e o 'a' e coloquei tegs semanticas strong e 'em', com tags semanticas o HTML entende melhor qual parte é do site-->
+                        <a href="#" class="view-more">Ver Perfil </a>
+                    </div>
+                </div>
+            </div>
+            <div class="minimal-card">
+                <div class="card-img" style="background-image: url('../img/NPS.png')"></div>
 
-            <div class="card-details">
-                <span class="category">Hospedagem</span>
-                <h3>Nosso Pet Shop</h3>
-                <p class="location">Santos, SP • ⭐ 5.0</p>
-                <div class="card-meta">
-                    <strong class="price">R$ 100<em>/noite</em></strong> <!--Tirei o span e o 'a' e coloquei tegs semanticas strong e 'em', com tags semanticas o HTML entende melhor qual parte é do site-->
-                    <a href="#" class="view-more">Ver Perfil →</a>
+                <div class="card-details">
+                    <span class="category">Hospedagem</span>
+                    <h3>Nosso Pet Shop</h3>
+                    <p class="location">Santos, SP • ⭐ 5.0</p>
+                    <div class="card-meta">
+                        <strong class="price">R$ 100<em>/noite</em></strong> <!--Tirei o span e o 'a' e coloquei tegs semanticas strong e 'em', com tags semanticas o HTML entende melhor qual parte é do site-->
+                        <a href="#" class="view-more">Ver Perfil </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
     <!--Script para carregar os dados do IBGE-->
     <script src="../js/ibge_api.js"></script>
 
     <!--Carregando footer-->
-    <footer>
-        <div id="footer"></div>
-        <script src="../js/loade_footer.js"></script>   
+    <footer class="container footer-content">
+        <p>&copy; 2026 PetMee. Feito com amor por amantes de pets.</p>
+        <div class="footer-links">
+            <a href="#">Privacidade</a>
+            <a href="#">Termos</a>
+        </div>
     </footer>
 
 </body>

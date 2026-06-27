@@ -5,7 +5,99 @@
     box-sizing: border-box;
 }
 
+header {
+    background: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 2rem; /* Ajustado para a logo */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.logo img {
+    height: 100px; /* Tamanho ideal para a logo no menu */
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: 0.2s; }
+.nav-links a:hover { color: var(--secondary); }
+
+a.button-login {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.button-login:hover {
+    background-color: #ea580c; /* Laranja mais escuro */
+    box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.2);
+}
+
+
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 2.5rem 0;
+    background: rgb(255, 255, 255);
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    font-size: 0.85rem;
+    color: #666;
+    
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { 
+    text-decoration: none; 
+    color: var(--text-muted); 
+    transition: 0.2s;
+}
+.footer-links a:hover { color: var(--secondary); }
+
+
+
+
+
 body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: 'Inter', sans-serif;
     background: #f5f7fb;
     color: #222;
@@ -15,10 +107,10 @@ body{
 
 .hero-title{
     text-align: center;/* Centraliza o texto horizontalmente */
-    margin-top: 40px;/* Espaçamento superior */
-    margin-bottom: 40px;/* Espaçamento inferior */
+    margin-top: 140px;/* Espaçamento superior */
+    margin-bottom: 20px;/* Espaçamento inferior */
 
-    font-size: 42px;/* Tamanho da fonte */
+    font-size: 36px;/* Tamanho da fonte */
     font-weight: 800;/* Negrito */
 
     font-family: 'Outfit', sans-serif;/* Fonte personalizada para o título */
@@ -31,15 +123,14 @@ body{
 
 /*SIDEBAR DOS FILTROS*/
 .sidebar-filter{
-    position: fixed;/* Fixa a barra lateral na tela */
-
-    top: 170px;/* Distância do topo da tela */
-    left: 25px;/* Distância da esquerda da tela */
-
+   position: relative;
+   
+   height: auto;
+    
     width: 290px;
     min-width: 290px;
 
-    background: #fff;/* Fundo branco para a barra lateral */
+    background: #ffffff;/* Fundo branco para a barra lateral */
 
     border-radius: 22px;/* Bordas arredondadas */
 
@@ -49,9 +140,9 @@ body{
 
     border: 1px solid #ececec;/* Borda leve para destacar a barra lateral */
 
-    height: calc(100vh - 200px);
+    height: max-content;
 
-    overflow-y: auto;/* Permite rolagem vertical se o conteúdo ultrapassar a altura da barra lateral */
+    margin-bottom: auto;
 }
 
 
@@ -60,6 +151,7 @@ body{
     display: flex;/* Exibe os filtros em um layout flexível */
     flex-direction: column;/* Organiza os filtros em uma coluna */
     gap: 25px;/* Espaçamento entre os grupos de filtros */
+    
 }
 
 
@@ -68,15 +160,17 @@ body{
     display: flex;/* Exibe os filtros em um layout flexível */
     flex-direction: column;/* Organiza os filtros em uma coluna */
 
-    gap: 14px;
+    gap: 15px;
 
     padding-bottom: 22px;/* Espaçamento inferior para separar os grupos de filtros */
 
     border-bottom: 1px solid #ededed;
+    
 }
 
 .grupo-filtros:last-child{
     border-bottom: none;/* Remove a borda inferior do último grupo de filtros */
+    
 }
 
 
@@ -161,9 +255,7 @@ select.input-estado, select.input-cidade{/* Estilo para os campos de seleção d
 
 
 .Card-cuidadores-encontrados{/* Estilo para a seção que exibe os cuidadores encontrados */
-    margin-left: 350px;/* Espaçamento à esquerda para acomodar a barra lateral fixa */
-
-    padding: 20px;/* Espaçamento interno para os cartões de cuidadores encontrados */
+  flex: 1;
 
     display: grid;
 
@@ -284,9 +376,25 @@ transition: 0.2s ease;
 opacity: 0.7;
 }
 
+main{
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 0 20px;
+    width: 100%;
+}
+
 
 
 @media screen and (max-width: 1024px){/* Estilos para telas com largura máxima de 1024px (tablets e dispositivos menores) */
+
+    main{
+        flex-direction: column;
+        align-items: center;
+        padding: 0 15px;
+        width: 100%;
+    }
 
     .sidebar-filter{
         position: relative;/* Altera a posição da barra lateral para relativa para que ela se encaixe no fluxo normal do layout em telas menores */
@@ -309,7 +417,21 @@ opacity: 0.7;
         padding: 15px;/* Reduz o espaçamento interno para se adequar melhor a telas menores */
     }
 
+    .logo img{
+        height: 70px;
+    }
     .hero-title{/* Estilos para o título principal em telas menores */
-        font-size: 34px;
+        margin-top: 110px ;
+        font-size: 28px;
+        padding: 0 10px;
+    }
+
+    header{
+        position: fixed;
+        top: 0 ;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background-color: #ffffff;
     }
 }
