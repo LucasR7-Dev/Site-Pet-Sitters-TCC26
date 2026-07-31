@@ -37,12 +37,13 @@ jobs:
         run: npm install -g htmlhint stylelint stylelint-config-standard eslint
 
       - name: Validar Arquivos HTML
-        run: htmlhint "**/*.html" || echo "Nenhum erro crítico impeditivo"
+        run: |
+          htmlhint "**/*.html" --ignore "venv/**,.git/**,node_modules/**" || echo "Validação HTML concluída com avisos"
 
       - name: Validar Arquivos CSS
         run: |
-          npx stylelint "**/*.css" --config stylelint-config-standard || echo "Apenas avisos de estilo"
+          npx stylelint "**/*.css" --ignore-path .gitignore --config stylelint-config-standard || echo "Validação CSS concluída com avisos"
 
       - name: Validar Arquivos JavaScript
         run: |
-          npx eslint "**/*.js" --env browser --syntax-ecma-version 2020 || echo "Apenas avisos de sintaxe"
+          npx eslint "**/*.js" --ignore-pattern "venv/**" --ignore-pattern "node_modules/**" --env browser --syntax-ecma-version 2020 || echo "Validação JS concluída com avisos"
