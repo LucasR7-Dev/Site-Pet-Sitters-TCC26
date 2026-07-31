@@ -1,27 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
-    <link rel="stylesheet" href="../../css/registro/registro.css">
+    <link rel="stylesheet" href="{% static 'registro/registro.css' %}">
     <title>PetMee | Registro</title>
 </head>
 <body>
     <div class="register-box">
-        <form>
-            <h1>Registrar-se</h1>
+        <h1>Registrar-se</h1>
+        {% if erro %}
+            <p>{{ erro }}</p>
+        {% endif %}
+        {% if sucesso %}
+            <p>{{ sucesso }}</p>
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            
             <div class="Username">
-                <input placeholder="Coloque o seu nome: " type="text">
+                <input placeholder="Coloque o seu nome: " type="text" id="nome" name="nome" required>
             </div>
             <div class="email-input">
-                <input placeholder="Seu E-mail" type="text">
+                <input placeholder="Seu E-mail" type="email" name="email" autocomplete="off" required>
             </div>
-            <div class="create-password">
-                <input placeholder="Crie uma senha " type="password">
-            </div>
+        
             <div class="confirm-password" >
-                <input placeholder="Confirme a senha" type="password">
+                <input type="password" name="password" placeholder="Crie uma senha" required>
             </div>
             <div class="check-box">
                 <label>
