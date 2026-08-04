@@ -2,7 +2,7 @@
 const pets = [
   {
     nome: "Luna 🐶",
-    img: "../../pets/CA1.png", 
+    img: "../../img/pets/CA1.png", 
     tags: ["Fêmea", "Médio", "2 anos"],
     raca: "Husky Siberiano",
     localizacao: "Pinheiros, SP • ⭐ 5.0",
@@ -11,7 +11,7 @@ const pets = [
   },
   {
     nome: "Bob 🐶",
-    img: "../../pets/CA2.png", 
+    img: "../../img/pets/CA2.png", 
     tags: ["Macho", "Grande", "1 ano"],
     raca: "Golden Retriever",
     localizacao: "Vila Mariana, SP • ⭐ 5.0",
@@ -20,7 +20,7 @@ const pets = [
   },
   {
     nome: "Senhorita Bigodes 🐱",
-    img: "../../pets/GA1.png",
+    img: "../../img/pets/GA1.png",
     tags: ["Fêmea", "Pequena", "3 anos"],
     raca: "Calico",
     localizacao: "Barueri, SP • ⭐ 5.0",
@@ -29,7 +29,7 @@ const pets = [
   },
   {
     nome: "Biscoito 🐹",
-    img: "../../pets/HA1.png",
+    img: "../../img/pets/HA1.png",
     tags: ["Macho", "Pequeno", "1 anos"],
     raca: "Hamster Sírio",
     localizacao: "Campinas, SP • ⭐ 4.9",
@@ -38,7 +38,7 @@ const pets = [
   },
   {
     nome: "Amora 🐰",
-    img: "../../pets/CO1.jpg",
+    img: "../../img/pets/CO1.jpg",
     tags: ["Fêmea", "Pequena", "3 anos"],
     raca: "Brachylagus idahoensis",
     localizacao: "Moema, SP • ⭐ 4.5",
@@ -47,7 +47,7 @@ const pets = [
   },
   {
     nome: "Piquititico 🦜",
-    img: "../../pets/PI1.jpg",
+    img: "../../img/pets/PI1.jpg",
     tags: ["Macho", "Pequeno", "6 anos"],
     raca: "Periquito australiano",
     localizacao: "Bela Vista, SP • ⭐ 4.3",
