@@ -11,13 +11,12 @@
 <body>
     <div class="register-box">
         <h1>Registrar-se</h1>
-        {% if erro %}
-            <p>{{ erro }}</p>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
         {% endif %}
-        {% if sucesso %}
-            <p>{{ sucesso }}</p>
-        {% endif %}
-        <form action="" method="POST">
+        <form action="{% url 'register' %}" method="POST">
             {% csrf_token %}
             
             <div class="Username">

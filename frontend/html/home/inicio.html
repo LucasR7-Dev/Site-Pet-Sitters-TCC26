@@ -1,17 +1,30 @@
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetMee | Cuidado e Carinho para seu Pet</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="{% static 'inicio.css' %}">
 </head>
 <body>
 
-    <!--Importando o Header do site-->
-    <header id="header"></header>
-    <script src="../js/load_header.js"></script>
+    <!--Header do site-->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="../html/inicio.html">
+                    <img src="../img/LOGO.png" alt="PetMee Logo">
+                </a>
+            </div>
+            
+            <div class="nav-links">
+                <a href="../html/search_cuidadores.html">Encontrar Cuidadores</a>
+                <a href="#como-funciona">Como funciona</a>
+                <a href="../html/Login/Login.html" class="button-login">Ser um Cuidador</a>
+            </div>
+        </nav>
+    </header>
     <!--Conteúdo Principal-->
 
     <main class="container">
@@ -114,7 +127,12 @@
         </section>
     </main>
     <!--Rodapé do site-->
-    <div id="footer"></div>
-    <script src="../js/loade_footer.js"></script>
+    <footer class="container footer-content">
+        <p>&copy; 2026 PetMee. Feito com amor por amantes de pets.</p>
+        <div class="footer-links">
+            <a href="#">Privacidade</a>
+            <a href="#">Termos</a>
+        </div>
+    </footer>
 </body>
 </html>

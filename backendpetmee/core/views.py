@@ -1,52 +1,78 @@
+# Padrão recomendado pela comunidade Django:
+
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from backendpetmee.supabase_client import supabase
 
-# Suas views de cadastro e login vêm aqui abaixo...
-
-
 def cadastro_user(request):
     if request.method == 'POST':
-        print('==== DADOS RECEBIDOS ====')
-        print(request.POST)
-        print('==========================')
-
-        
-        email =  request.POST.get('email', '').strip()
+        nome_completo = request.POST.get('nome', '').strip()
+        email = request.POST.get('email', '').strip()
         senha = request.POST.get('password', '').strip()
-        nome = request.POST.get('nome', '').strip()
 
-        print('=======^^======')
-        print(f'Nome:{nome}')
-        print(f'Email:{email}')
-        print(f'password:{senha}')
-        print('================')
+        if not nome_completo or not email or not senha:
+            messages.error(request, "Por favor, preencha todos os campos.")
+            return render(request, 'registro/registro.html')
 
         try:
-            # 1 Criar usuario no Supabase Auth
-            response = supabase.auth.sign_up(
+            auth_response = supabase.auth.sign_up(
                 credentials={
                     'email': email,
                     'password': senha,
-                    'options':{
-                        'data':{
-                            'nome':nome,
+                    'options': {
+                        'data': {
+                            'nome_completo': nome_completo,
                         }
                     }
                 }
-            
             )
-            print('Response do Supabase:', response)
-            
 
-            if response.user:
-                messages.success(request, "Cadastro realizado! Verifique seu e-mail para confirmar a conta")
-                return redirect('Login.html')
+            user = auth_response.user
+            if not user:
+                messages.error(request, "Não foi possível criar a conta. Verifique os dados.")
+                return render(request, 'registro/registro.html')
+
+            try:
+                supabase.table("Usuarios").insert({
+                    "user_id": str(user.id),
+                    "nome_completo": nome_completo,
+                }).execute()
+            except Exception as db_err:
+                print(f'[AVISO] Conta criada no Auth, mas falhou insert em Usuarios: {db_err}')
+
+            messages.success(request, "Cadastro realizado com sucesso! Faça seu login.")
+            return redirect('login')
 
         except Exception as e:
-            print('ERRO SUPABASE', e)
-            #erros comuns como e-mail ja cadastrado e outros.
+            print(f'[ERRO NO CADASTRO]: {e}')
             messages.error(request, f"Erro ao cadastrar: {str(e)}")
 
     return render(request, 'registro/registro.html')
-                
+
+
+def login_user(request):
+    if request.method == 'POST':
+        email = request.POST.get('email', '').strip()
+        senha = request.POST.get('password', '').strip()
+
+        try:
+            resposta = supabase.auth.sign_in_with_password({
+                'email': email,
+                'password':senha,
+            })
+
+            if resposta.user:
+                request.session['user_id'] = resposta.user.id
+                return redirect('home') 
+
+        except Exception as e:
+            messages.error(request, "E-mail ou senha inválidos.")
+            return redirect('login')
+    return render(request, 'Login/Login.html')
+
+def home(request):
+    if 'user_id' not in request.session:
+        return redirect('login')
+
+    return render(request, 'home/inicio.html')

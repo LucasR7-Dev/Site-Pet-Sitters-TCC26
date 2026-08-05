@@ -10,11 +10,9 @@ from django.db import models
 
 class Usuarios(models.Model):
     id = models.BigAutoField(primary_key=True)
-    created_at = models.DateTimeField()
     user_id = models.UUIDField(blank=True, null=True)
     nome_completo = models.TextField(blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
-    avatar_url = models.TextField(blank=True, null=True)
+  
 
     class Meta:
         managed = False
