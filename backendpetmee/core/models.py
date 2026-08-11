@@ -160,3 +160,10 @@ class Servico(models.Model):
         managed = False
         db_table = 'servico'
 
+
+class Pet(models.Model):
+    pet_id = models.BigAutoField(primary_key=True)
+
+    class Meta:
+        db_table = 'Pet'
+

@@ -27,5 +27,6 @@ urlpatterns = [
     #rotas especificas
     path('registro/', views.cadastro_user, name='register'),
     path('login/', views.login_user, name='login'),
-    path('home/', views.home, name='home')
+    path('home/', views.home, name='home'),
+    path('perfil/', views.detalhes_pet, name='Detalhes Pet')
 ]

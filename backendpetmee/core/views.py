@@ -1,9 +1,11 @@
 # Padrão recomendado pela comunidade Django:
 
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from backendpetmee.supabase_client import supabase
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from .models import Pet
 
 def cadastro_user(request):
     if request.method == 'POST':
@@ -35,7 +37,7 @@ def cadastro_user(request):
 
             try:
                 supabase.table("Usuarios").insert({
-                    "user_id": str(user.id),
+                    "id": str(user.id),
                     "nome_completo": nome_completo,
                 }).execute()
             except Exception as db_err:
@@ -76,3 +78,11 @@ def home(request):
         return redirect('login')
 
     return render(request, 'home/inicio.html')
+
+def detalhes_pet(request, pet_id):
+    pet = get_object_or_404(Pet, id=pet_id)
+
+    context = {
+        'pet': pet
+    }
+    
