@@ -1,0 +1,5 @@
+venv/
+.env
+backendpetmee/__pycache__.py
+backendpetmee/db.sqlite3
+backendpetmee/core/__pycache__.py

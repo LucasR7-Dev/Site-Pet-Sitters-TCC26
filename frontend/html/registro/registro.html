@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    <link rel="stylesheet" href="{% static 'registro/registro.css' %}">
+    <title>PetMee | Registro</title>
+</head>
+<body>
+    <div class="register-box">
+        <h1>Registrar-se</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="Username">
+                <input placeholder="Coloque o seu nome: " type="text" id="nome" name="nome" required>
+            </div>
+            <div class="email-input">
+                <input placeholder="Seu E-mail" type="email" name="email" autocomplete="off" required>
+            </div>
+        
+            <div class="confirm-password" >
+                <input type="password" name="password" placeholder="Crie uma senha" required>
+            </div>
+            <div class="check-box">
+                <label>
+                    <input type="checkbox">
+                    Lembre de mim
+                </label>                 
+            </div>
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</body>
+</html>
