@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PetMee | Perfil de: Luna 🐶</title>
+  <title>
+    {% block titulo %}
+    PetMee | 
+    {% endblock titulo %}
+  </title>
   
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Caminho atualizado apontando para a pasta correta do CSS -->
@@ -18,9 +22,9 @@
       <div class="overlay">
         <h2 id="petName">Luna 🐶</h2>
         <div class="tags">
-          <span class="tag" id="tagG">Fêmea</span>
-          <span class="tag" id="tagM">Médio</span>
-          <span class="tag" id="tagA">2 anos</span>
+          <span class="tag" id="tagG">{{pet.sexo_pet}}</span>
+          <span class="tag" id="tagM">{{ pet.porte_pet}}</span>
+          <span class="tag" id="tagA">{{pet.pet_age}}</span>
         </div>
       </div>
     </header>
@@ -28,12 +32,12 @@
     <article class="content">
       <section class="section">
         <span class="label">Raça</span>
-        <span class="value" id="petBreed">Husky Siberiano</span>
+        <span class="value" id="petBreed">{{pet.raca}}</span>
       </section>
 
       <section class="section">
         <span class="label">Localização</span>
-        <span class="value" id="petLocation">Pinheiros, SP • ⭐ 5.0</span>
+        <span class="value" id="petLocation">{{pet.localizacao}}</span>
       </section>
 
       <section class="section">
@@ -43,13 +47,13 @@
 
       <section class="section">
         <span class="label">Saúde</span>
-        <span class="value" style="color: #2f855a;">✔ Vacinada &nbsp;&nbsp; ✔ Castrada</span>
+        <span class="value" style="color: #2f855a;">{{pet.saude}}</span>
       </section>
 
       <section class="section sobre">
         <span class="label">Sobre</span>
         <p class="value" id="petAbout" style="font-weight: 400; line-height: 1.5; color: #4a5568;">
-          Muito ativa, ama correr e brincar. Ideal para quem gosta de pets cheios de energia.
+          {{pet.sobre_pet}}
         </p>
       </section>
 

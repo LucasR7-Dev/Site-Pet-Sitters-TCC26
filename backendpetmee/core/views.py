@@ -6,6 +6,7 @@ from django.contrib import messages
 from backendpetmee.supabase_client import supabase
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from .models import Pet
+from supabase import create_client, Client
 
 def cadastro_user(request):
     if request.method == 'POST':
@@ -80,9 +81,10 @@ def home(request):
     return render(request, 'home/inicio.html')
 
 def detalhes_pet(request, pet_id):
-    pet = get_object_or_404(Pet, id=pet_id)
-
+    response = supabase.table('Pet').select('*').eq('pet_id', pet_id).execute()
+    pet = response.data[0] if response.data else None
     context = {
-        'pet': pet
+        'pet':pet
     }
+    return render(request, 'perfil1.html', context)
     

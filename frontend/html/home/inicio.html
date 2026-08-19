@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetMee | Cuidado e Carinho para seu Pet</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'inicio.css' %}">
+    <title>
+        {% block titulo %}
+        PetMee | Cuidado e Carinho para seu Pet
+        {% endblock titulo %}
+    </title>
 </head>
 <body>
 
@@ -63,10 +67,10 @@
                     <div class="card-details">
                         <span class="category">Pet Sitting</span>
                         <h3>Bob</h3>
-                        <p class="location">Vila Mariana, SP • ⭐ 5.0</p>
+                        <p class="location">{{pet.localizacao}}</p>
                         <div class="card-meta">
                             <span class="price">R$ 55<span>/visita</span></span>
-                            <a href="../html/perfil/perfil2.html" class="view-more">Ver Perfil →</a>
+                            <a href="{% url 'perfil'%}" class="view-more">Ver Perfil →</a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +83,7 @@
                         <p class="location">Barueri, SP • ⭐ 5.0</p>
                         <div class="card-meta">
                             <span class="price">R$ 100<span>/noite</span></span>
-                            <a href="../html/perfil/perfil3.html" class="view-more">Ver Perfil →</a>
+                            <a href="{% url 'perfil'%}" class="view-more">Ver Perfil →</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +96,7 @@
                         <p class="location">Campinas, SP • ⭐ 4.9</p>
                         <div class="card-meta">
                             <span class="price">R$ 75<span>/noite</span></span>
-                            <a href="../html/perfil/perfil4.html" class="view-more">Ver Perfil →</a>
+                            <a href="{% url 'perfil'%}" class="view-more">Ver Perfil →</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +109,7 @@
                         <p class="location">Moema, SP • ⭐ 4.5</p>
                         <div class="card-meta">
                             <span class="price">R$ 82<span>/noite</span></span>
-                            <a href="../html/perfil/perfil5.html" class="view-more">Ver Perfil →</a>
+                            <a href="{% url 'perfil'%}" class="view-more">Ver Perfil →</a>
                         </div>
                     </div>
                 </div>
@@ -118,7 +122,7 @@
                         <p class="location">Bela Vista, SP • ⭐ 4.3</p>
                         <div class="card-meta">
                             <span class="price">R$ 30<span>/noite</span></span>
-                            <a href="../html/perfil/perfil6.html" class="view-more">Ver Perfil →</a>
+                            <a href="{% url 'perfil'%}" class="view-more">Ver Perfil →</a>
                         </div>
                     </div>
                 </div>
