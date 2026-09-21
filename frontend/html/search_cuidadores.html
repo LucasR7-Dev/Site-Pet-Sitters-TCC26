@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -116,3 +117,122 @@
 
 </body>
 </html>
+=======
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PetMee | Cuidadores{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'search_cuidadores.css' %}">{% endblock %}
+
+{% block content %}
+<main class="caregiver-page container">
+    <section class="caregiver-hero">
+        <div>
+            <p class="eyebrow">Rede de cuidado PetMee</p>
+            <h1>Encontre alguém para cuidar do seu <span>melhor amigo.</span></h1>
+            <p class="hero-copy">Filtre por localização e idade para encontrar cuidadores ativos na comunidade.</p>
+        </div>
+        <a class="hero-action" href="{% url 'tornar_cuidador' %}">Quero ser cuidador <span>↗</span></a>
+    </section>
+
+    <div class="caregiver-layout">
+        <aside class="sidebar-filter">
+            <div class="filter-heading">
+                <span class="filter-icon">⌕</span>
+                <div>
+                    <p class="eyebrow">Refine sua busca</p>
+                    <h2>Filtros</h2>
+                </div>
+            </div>
+            <form method="get">
+                <fieldset>
+                    <legend>Localização</legend>
+                    <label for="estado">Estado</label>
+                    <select id="estado" name="estado" class="filter-control">
+                        <option value="">Todos os estados</option>
+                    </select>
+                    <label for="cidade">Cidade</label>
+                    <select id="cidade" name="cidade" class="filter-control" {% if not filters.estado %}disabled{% endif %}>
+                        <option value="">Todas as cidades</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend>Idade</legend>
+                    <p class="filter-hint">A rede PetMee aceita cuidadores de 21 a 60 anos.</p>
+                    <div class="age-fields">
+                        <label for="idade_min">De
+                            <input id="idade_min" type="number" name="idade_min" value="{{ filters.idade_min }}" min="21" max="60">
+                        </label>
+                        <label for="idade_max">Até
+                            <input id="idade_max" type="number" name="idade_max" value="{{ filters.idade_max }}" min="21" max="60">
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Gênero</legend>
+                    <label class="radio-option"><input type="radio" name="genero" value="" {% if not filters.genero %}checked{% endif %}> Todos</label>
+                    <label class="radio-option"><input type="radio" name="genero" value="feminino" {% if filters.genero == 'feminino' %}checked{% endif %}> Mulher</label>
+                    <label class="radio-option"><input type="radio" name="genero" value="masculino" {% if filters.genero == 'masculino' %}checked{% endif %}> Homem</label>
+                </fieldset>
+                <fieldset>
+                    <legend>Avaliação mínima</legend>
+                    <label class="radio-option"><input type="radio" name="estrelas" value="" {% if not filters.estrelas %}checked{% endif %}> Todas</label>
+                    {% for nota in "54321" %}
+                        <label class="radio-option"><input type="radio" name="estrelas" value="{{ nota }}" {% if filters.estrelas == nota %}checked{% endif %}> {{ nota }} estrelas ou mais</label>
+                    {% endfor %}
+                </fieldset>
+                <button class="filter-submit" type="submit">Aplicar filtros <span>→</span></button>
+                <a class="clear-filters" href="{% url 'search_cuidadores' %}">Limpar filtros</a>
+            </form>
+        </aside>
+
+        <section class="caregiver-results">
+            <div class="results-caption">
+                <div>
+                    <p class="eyebrow">Disponíveis agora</p>
+                    <h2>{{ cuidadores|length }} cuidador{{ cuidadores|length|pluralize:"es" }} encontrado{{ cuidadores|length|pluralize:"s" }}</h2>
+                </div>
+                {% if filters.estado or filters.cidade or filters.genero or filters.estrelas %}
+                    <span class="active-filter">Filtros ativos</span>
+                {% endif %}
+            </div>
+            <div class="caregiver-grid">
+                {% for cuidador in cuidadores %}
+                    <a class="caregiver-card-link" href="{% url 'perfil_usuario' cuidador.id %}">
+                        <article class="minimal-card">
+                            <div class="card-img">
+                                <img src="{% if cuidador.avatar_url %}{{ cuidador.avatar_url }}{% else %}{% static 'CA1.png' %}{% endif %}" onerror="this.onerror=null;this.src='{% static 'CA1.png' %}'" alt="Foto de {{ cuidador.nome_completo }}" loading="lazy">
+                                <span class="verified-badge">✓ Perfil ativo</span>
+                            </div>
+                            <div class="card-details">
+                                <span class="category">Cuidador PetMee</span>
+                                <h3>{{ cuidador.nome_completo }}</h3>
+                                <p class="location">⌖ {{ cuidador.cidade|default:'Localização não informada' }}{% if cuidador.estado %}, {{ cuidador.estado }}{% endif %}</p>
+                                <div class="card-meta">
+                                    <span class="profile-age">{% if cuidador.idade %}{{ cuidador.idade }} anos{% else %}21–60 anos{% endif %}</span>
+                                    <span class="rating">{% if cuidador.media_avaliacoes %}★ {{ cuidador.media_avaliacoes }}/5{% else %}Novo perfil{% endif %}</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                {% empty %}
+                    <div class="empty-state">
+                        <img src="{% static 'CA2.png' %}" alt="" aria-hidden="true">
+                        <strong>Nenhum cuidador encontrado</strong>
+                        <p>Tente ajustar os filtros ou seja o primeiro a se apresentar à comunidade.</p>
+                        <a href="{% url 'tornar_cuidador' %}">Tornar-se cuidador</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</main>
+<script>
+    window.petmeeLocationFilters = {
+        estado: "{{ filters.estado|escapejs }}",
+        cidade: "{{ filters.cidade|escapejs }}"
+    };
+</script>
+<script src="{% static 'ibge_api.js' %}"></script>
+{% endblock %}
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)

@@ -147,11 +147,20 @@ a.button-login {
 }
 
 .card-img {
+<<<<<<< HEAD
+=======
+    position: relative;
+    overflow: hidden;
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
     height: 200px;
     background-size: cover;
     background-position: center;
     background-color: #f3f4f6; /* Placeholder caso a imagem falhe */
 }
+<<<<<<< HEAD
+=======
+.card-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 
 .card-details { padding: 1.5rem; }
 

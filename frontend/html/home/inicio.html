@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -140,3 +141,47 @@
     </footer>
 </body>
 </html>
+=======
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PetMee | Início{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'inicio.css' %}">{% endblock %}
+
+{% block content %}
+<main class="container">
+    <section class="hero-minimal">
+        <h1>Cuidado, Carinho & <span>Segurança.</span></h1>
+        <p>Encontre cuidadores para o seu melhor amigo.</p>
+        <form class="search-wrap" action="{% url 'search_cuidadores' %}" method="get">
+            <div class="search-input"><span class="icon">🐾</span><input name="cidade" type="text" placeholder="Digite a cidade onde precisa de um cuidador"></div>
+            <button class="btn-search" type="submit">Buscar</button>
+        </form>
+    </section>
+    <section class="featured-products">
+        <div class="section-heading"><h2>Cuidadores cadastrados</h2><a href="{% url 'search_cuidadores' %}">Ver todos →</a></div>
+        <div class="grid-clean">
+            {% for cuidador in cuidadores %}
+                <div class="minimal-card">
+                    <div class="card-img"><img src="{% if cuidador.avatar_url %}{{ cuidador.avatar_url }}{% else %}{% static 'CA1.png' %}{% endif %}" onerror="this.onerror=null;this.src='{% static 'CA1.png' %}'" alt="Foto de {{ cuidador.nome_completo }}" loading="lazy"></div>
+                    <div class="card-details"><span class="category">Cuidador PetMee</span><h3>{{ cuidador.nome_completo }}</h3><p class="location">{{ cuidador.cidade|default:'Localização não informada' }}{% if cuidador.estado %}, {{ cuidador.estado }}{% endif %}</p><div class="card-meta"><span class="price">Perfil verificado</span><a href="{% url 'perfil_usuario' cuidador.id %}" class="view-more">Conhecer →</a></div></div>
+                </div>
+            {% empty %}
+                <p>Ainda não há cuidadores cadastrados. <a href="{% url 'tornar_cuidador' %}">Seja o primeiro.</a></p>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="featured-products">
+        <div class="section-heading"><h2>Pets disponíveis</h2><a href="{% url 'cadastrar_pet' %}">Cadastrar pet →</a></div>
+        <div class="grid-clean">
+            {% for pet in pets %}
+                <div class="minimal-card"><div class="card-img"><img src="{% if pet.foto_url %}{{ pet.foto_url }}{% else %}{% static 'CA1.png' %}{% endif %}" onerror="this.onerror=null;this.src='{% static 'CA1.png' %}'" alt="Foto de {{ pet.nome }}" loading="lazy"></div><div class="card-details"><span class="category">{{ pet.especie }}</span><h3>{{ pet.nome }}</h3><p class="location">{{ pet.localizacao }}</p><div class="card-meta"><span class="price">{{ pet.porte|default:'Porte não informado' }}</span><a href="{% url 'detalhes_pet' pet.id %}" class="view-more">Ver perfil →</a></div></div></div>
+            {% empty %}
+                <p>Nenhum pet disponível ainda. <a href="{% url 'cadastrar_pet' %}">Cadastre o primeiro.</a></p>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+<footer class="container footer-content"><p>© 2026 PetMee.</p></footer>
+{% endblock %}
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)

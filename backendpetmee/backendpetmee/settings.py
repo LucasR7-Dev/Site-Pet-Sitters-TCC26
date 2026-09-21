@@ -23,12 +23,20 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+=======
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') or os.getenv('SESSION_SECRET') or 'petmee-dev-secret'
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = []
+=======
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '*']
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 
 
 # Application definition
@@ -75,6 +83,7 @@ WSGI_APPLICATION = 'backendpetmee.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+<<<<<<< HEAD
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -85,6 +94,29 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+=======
+if os.getenv('SUPABASE_DB_PASSWORD'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('SUPABASE_DB_NAME', 'postgres'),
+            'USER': os.getenv('SUPABASE_DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('SUPABASE_DB_PASSWORD'),
+            'HOST': os.getenv('SUPABASE_DB_HOST', 'db.kwbshwluhzbjwusxowil.supabase.co'),
+            'PORT': os.getenv('SUPABASE_DB_PORT', '5432'),
+        }
+    }
+else:
+    # O site usa o Supabase REST para os dados da aplicação. O SQLite local
+    # permite que o Django suba e que as páginas sejam visualizadas sem a
+    # senha do banco direto do Supabase.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 
 
 # Password validation
@@ -122,6 +154,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 
 
 
@@ -129,6 +162,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR.parent / 'frontend' / 'css',
     BASE_DIR.parent / 'frontend' / 'js',
+=======
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Os arquivos do front-end ficam fora do app Django.  Os prefixos preservam
+# caminhos estáveis, independentemente da URL da página que está sendo exibida.
+STATICFILES_DIRS = [
+    BASE_DIR.parent / 'frontend' / 'css',
+    BASE_DIR.parent / 'frontend' / 'js',
+    BASE_DIR.parent / 'img',
+    BASE_DIR.parent / 'pets',
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 ]
 
 # Default primary key field type

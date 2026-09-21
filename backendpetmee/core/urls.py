@@ -28,5 +28,20 @@ urlpatterns = [
     path('registro/', views.cadastro_user, name='register'),
     path('login/', views.login_user, name='login'),
     path('home/', views.home, name='home'),
+<<<<<<< HEAD
     path('perfil/', views.detalhes_pet, name='Detalhes Pet')
+=======
+    path('sobre/', views.sobre, name='sobre'),
+    path('petshops/', views.petshops, name='petshops'),
+    path('loja/', views.loja, name='loja'),
+    path('loja/produto/novo/', views.cadastrar_produto, name='cadastrar_produto'),
+    path('cuidadores/', views.search_cuidadores, name='search_cuidadores'),
+    path('tornar-cuidador/', views.tornar_cuidador, name='tornar_cuidador'),
+    path('pets/novo/', views.cadastrar_pet, name='cadastrar_pet'),
+    path('pets/<int:pet_id>/', views.detalhes_pet, name='detalhes_pet'),
+    path('perfil/', views.meu_perfil, name='meu_perfil'),
+    path('perfil/<uuid:user_id>/', views.perfil_usuario, name='perfil_usuario'),
+    path('perfil/<uuid:user_id>/editar/', views.editar_perfil, name='editar_perfil'),
+    path('perfil/<uuid:user_id>/avaliacoes/', views.criar_avaliacao, name='criar_avaliacao'),
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 ]

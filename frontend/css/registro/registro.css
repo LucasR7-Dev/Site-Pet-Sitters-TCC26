@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 *{
     margin: 0;
@@ -142,3 +143,27 @@ body{
     text-decoration: underline;
 }
 
+=======
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+:root { --orange: #f97316; --orange-dark: #ea580c; --ink: #1c1917; --muted: #78716c; }
+* { box-sizing: border-box; }
+body { display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1.5rem; background: radial-gradient(circle at 15% 15%, #fed7aa 0, transparent 32%), linear-gradient(135deg, #fff7ed, #ffedd5); color: var(--ink); font-family: "DM Sans", sans-serif; }
+.register-box { width: min(100%, 450px); padding: clamp(1.6rem, 5vw, 2.6rem); border: 1px solid rgba(255,255,255,.8); border-radius: 28px; background: rgba(255,255,255,.9); box-shadow: 0 24px 70px rgba(124,45,18,.15); backdrop-filter: blur(12px); }
+.register-box::before { content: "PetMee"; display: block; margin-bottom: 1.4rem; color: var(--orange); font: 800 1.4rem "DM Sans", sans-serif; letter-spacing: -.05em; }
+.register-box h1 { margin: 0 0 .45rem; font-size: clamp(2rem, 5vw, 2.75rem); letter-spacing: -.05em; }
+.register-box h1::after { content: "Comece sua jornada na comunidade PetMee."; display: block; margin-top: .55rem; color: var(--muted); font-size: .92rem; font-weight: 400; letter-spacing: 0; }
+.message { margin: 1rem 0; padding: .7rem .85rem; border-radius: 11px; background: #fff7ed; color: #9a3412; font-size: .82rem; }
+.register-box form { display: grid; gap: .9rem; margin-top: 1.6rem; }
+.register-box form > div { display: grid; gap: .35rem; }
+.register-box input { width: 100%; padding: .9rem 1rem; border: 1px solid #e7e5e4; border-radius: 13px; outline: none; background: #fff; color: var(--ink); font: inherit; }
+.register-box input::placeholder { color: #a8a29e; }
+.register-box input:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(249,115,22,.13); }
+.register-note { margin: .1rem 0; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+.register-note strong { color: #c2410c; }
+.check-box { color: var(--muted); font-size: .78rem; }
+.check-box label { display: flex; align-items: center; gap: .45rem; }
+.check-box input { width: auto; accent-color: var(--orange); }
+.register-box button { width: 100%; border: 0; border-radius: 13px; padding: .95rem 1rem; background: var(--orange); color: white; font: 700 1rem "DM Sans", sans-serif; cursor: pointer; box-shadow: 0 12px 22px rgba(249,115,22,.2); }
+.register-box button:hover { background: var(--orange-dark); transform: translateY(-1px); }
+@media (max-width: 480px) { body { padding: .8rem; } .register-box { border-radius: 22px; } }
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)

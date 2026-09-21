@@ -12,7 +12,19 @@ class Usuarios(models.Model):
     id = models.BigAutoField(primary_key=True)
     user_id = models.UUIDField(blank=True, null=True)
     nome_completo = models.TextField(blank=True, null=True)
+<<<<<<< HEAD
   
+=======
+    tipo_usuario = models.CharField(max_length=20, blank=True, null=True)
+    is_cuidador = models.BooleanField(default=False)
+    genero = models.CharField(max_length=20, blank=True, null=True)
+    cidade = models.TextField(blank=True, null=True)
+    estado = models.CharField(max_length=2, blank=True, null=True)
+    idade = models.IntegerField(blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
+    avatar_url = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
 
     class Meta:
         managed = False
@@ -167,3 +179,23 @@ class Pet(models.Model):
     class Meta:
         db_table = 'Pet'
 
+<<<<<<< HEAD
+=======
+
+class Produto(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    vendedor_id = models.UUIDField()
+    nome = models.TextField()
+    descricao = models.TextField(blank=True, null=True)
+    categoria = models.CharField(max_length=80, blank=True, null=True)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    estoque = models.IntegerField(default=0)
+    foto_url = models.TextField(blank=True, null=True)
+    ativo = models.BooleanField(default=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'produtos'
+
+>>>>>>> efea9b9 (Crie a pagina loja no projeto, e a aba petshops foi feita e a pagina cuidadores também, tem alguns erros de design mas pode ser modificado mais tarde)
